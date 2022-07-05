@@ -14,5 +14,5 @@ func Day2() {
 	fmt.Println(x)
 	fmt.Println(rand.Float64())
 	fmt.Print(rand.Intn(5) + 5)
-
+	//y := rand.Intn(5) + 5
 }
