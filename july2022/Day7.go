@@ -49,6 +49,21 @@ type student struct {
 	City   string
 }
 
+func StudentStructureSlices() {
+	//New Structure
+	abs := student{Name: "Ross", RollNo: 30, City: "NewYork"}
+	cbs := student{Name: "Marry", RollNo: 31, City: "London"}
+	students := []student{abs, cbs, student{Name: "Jack", RollNo: 32, City: "London"}}
+	//fmt.Println(students)
+	students = append(students, student{Name: "Kate", RollNo: 33, City: "NewYork"})
+	//slice of slice of structure
+	class := class{"firstA", students}
+	fmt.Println(class)
+	for i, j := range students {
+		fmt.Println(i, "   ", j)
+	}
+}
+
 func changecolumn(matrix [][]int) {
 	/*
 		input
@@ -97,85 +112,121 @@ func changerow(matrix [][]int) {
 // 	var picture [][]uint8
 // }
 
-func Day7() {
-	//New Structure
-	abs := student{Name: "Ross", RollNo: 30, City: "NewYork"}
-	cbs := student{Name: "Marry", RollNo: 31, City: "London"}
-	students := []student{abs, cbs, student{Name: "Jack", RollNo: 32, City: "London"}}
-	//fmt.Println(students)
-	students = append(students, student{Name: "Kate", RollNo: 33, City: "NewYork"})
-	//slice of slice of structure
-	class := class{"firstA", students}
-	fmt.Println(class)
-	for i, j := range students {
-		fmt.Println(i, "   ", j)
+func pop(arr []int, x int) (int, []int) {
+	n := arr[x]
+	return n, append(arr[:x], arr[x+1:]...)[:len(arr)-1]
+}
+func reverse(arr []int) []int {
+	var narry []int
+	for i := len(arr) - 1; i >= 0; i-- {
+		narry = append(narry, arr[i])
 	}
+	return narry
+}
+func maps(arr []int, f func(int) int) []int {
+	for i, v := range arr {
+		arr[i] = f(v)
+	}
+	return arr
+}
+func reduce(arr []int, f func(int, int) int) int {
+	var r int
+	for _, v := range arr {
+		r = f(r, v)
+	}
+	return r
+}
+
+func Day7() {
+	//afterlunch
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+	x := reduce(arr, func(prev int, now int) int {
+		return prev + now
+	})
+	fmt.Println(x)
+
+	fmt.Println(reverse(arr))
+	arr = maps(arr, func(r int) int {
+		return r * 2
+	})
+
+	a, arr := pop(arr, 4)
+	fmt.Println(a, arr)
+	/*
+		i := []interface{}{1, 2, 3}
+		j := []interface{}{"ABC", "CDE", "EFG"}
+
+		k := append(i, j...)
+		fmt.Println(k)
+	*/
+
 	//Slices
 	//pointer to an array/subset
 	//Len, Cap
-	s := make([]int, 1, 1)
-	for i := 0; i <= 5; i++ {
-		fmt.Printf("%d , %d ", len(s), cap(s))
-		s = append(s, i)
-	}
-	var records [][]string
-	students1 := make([]string, 3)
-	students1[0] = "ABC"
-	students1[1] = "XYZ"
-	students1[2] = "AXZ"
+	// s := make([]int, 1, 1)
+	// for i := 0; i <= 5; i++ {
+	// 	fmt.Printf("%d , %d ", len(s), cap(s))
+	// 	s = append(s, i)
+	// }
+	// var records [][]string
+	// students1 := make([]string, 3)
+	// students1[0] = "ABC"
+	// students1[1] = "XYZ"
+	// students1[2] = "AXZ"
 
-	records = append(records, students1)
-	fmt.Println(records)
-	students2 := make([]string, 3)
-	students2[0] = "123"
-	students2[1] = "456"
-	students2[2] = "789"
+	// records = append(records, students1)
+	// fmt.Println(records)
+	// students2 := make([]string, 3)
+	// students2[0] = "123"
+	// students2[1] = "456"
+	// students2[2] = "789"
 
-	records = append(records, students2)
-	fmt.Println(records)
+	// records = append(records, students2)
+	// fmt.Println(records)
 	//start of assignment
-	var matrix [][]int
-	row1 := make([]int, 3)
-	row1[0] = 1
-	row1[1] = 2
-	row1[2] = 3
+	// var matrix [][]int
+	// row1 := make([]int, 3)
+	// row1[0] = 1
+	// row1[1] = 2
+	// row1[2] = 3
 
-	matrix = append(matrix, row1)
-	fmt.Println(matrix)
-	row2 := make([]int, 3)
-	row2[0] = 4
-	row2[1] = 5
-	row2[2] = 6
+	// matrix = append(matrix, row1)
+	// fmt.Println(matrix)
+	// row2 := make([]int, 3)
+	// row2[0] = 4
+	// row2[1] = 5
+	// row2[2] = 6
 
-	matrix = append(matrix, row2)
-	fmt.Println(matrix)
+	// matrix = append(matrix, row2)
+	// fmt.Println(matrix)
 
-	row3 := make([]int, 3)
-	row3[0] = 7
-	row3[1] = 8
-	row3[2] = 9
+	// row3 := make([]int, 3)
+	// row3[0] = 7
+	// row3[1] = 8
+	// row3[2] = 9
 
-	matrix = append(matrix, row3)
-	fmt.Println(matrix)
-	for _, ind := range matrix {
-		fmt.Println(ind)
-	}
-	fmt.Println(matrix[0][0])
-	fmt.Println(matrix[1][0], matrix[1][1])
-	fmt.Println(matrix[2][0], matrix[2][1], matrix[2][2])
+	// matrix = append(matrix, row3)
+	// fmt.Println(matrix)
+	// for _, ind := range matrix {
+	// 	fmt.Println(ind)
+	// }
+	// fmt.Println(matrix[0][0])
+	// fmt.Println(matrix[1][0], matrix[1][1])
+	// fmt.Println(matrix[2][0], matrix[2][1], matrix[2][2])
 
-	for i := 0; i < len(matrix); i++ {
-		for j := 0; j <= i; j++ {
-			fmt.Print(matrix[i][j], " ")
-		}
-		fmt.Println("")
-	}
-	fmt.Println("")
-	changecolumn(matrix)
-	fmt.Println("")
-	changecolumn(matrix)
-	fmt.Println("")
-	changerow(matrix)
+	// for i := 0; i < len(matrix); i++ {
+	// 	for j := 0; j <= i; j++ {
+	// 		fmt.Print(matrix[i][j], " ")
+	// 	}
+	// 	fmt.Println("")
+	// }
+	// fmt.Println("")
+	// changecolumn(matrix)
+	// fmt.Println("")
+	// changecolumn(matrix)
+	// fmt.Println("")
+	// changerow(matrix)
 
 	//Slices Activity: Bitmap Images
 	//pic.Show(Pic)
