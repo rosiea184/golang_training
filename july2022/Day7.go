@@ -146,10 +146,10 @@ func Day7() {
 	})
 	fmt.Println(x)
 
-	fmt.Println(reverse(arr))
-	arr = maps(arr, func(r int) int {
-		return r * 2
-	})
+	//fmt.Println(reverse(arr))
+	// arr = maps(arr, func(r int) int {
+	// 	return r * 2
+	// })
 
 	a, arr := pop(arr, 4)
 	fmt.Println(a, arr)
