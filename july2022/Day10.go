@@ -78,3 +78,42 @@ func countDown(limit int) {
 // 	time.Sleep(time.Second * 5)
 // 	ch <- "Send me done"
 // }
+/*var (
+	printNow chan bool
+    i int
+)
+
+func main() {
+	printNow = make(chan bool)
+
+
+	go printer()
+	go sender()
+   	for {
+	}
+}
+func printer() {
+	for {
+		if _, ok :=<-printNow ;ok{
+			fmt.Println("Recieved !" , i)
+		}//else{
+             //return
+          //   os.Exit(0)
+       // }
+
+	}
+}
+func sender() {
+	for {
+		for i = 0; i < 10; i++ {
+            fmt.Println("Call" , i)
+
+			printNow <- true
+
+			time.Sleep(1 * time.Millisecond)
+		}
+       // close(printNow)
+        //return
+	}
+}
+*/
