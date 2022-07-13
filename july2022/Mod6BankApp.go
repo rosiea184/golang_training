@@ -59,34 +59,34 @@ func (e entity) changeAddress() {
 	fmt.Scan(&e.address)
 }
 func (w wallet) displayAccounts() {
-	for i:=0; i < len(w.accounts); i++(
-		if w.accounts[i].atype == "checking"{
+	for i := 0; i < len(w.accounts); i++ {
+		if w.accounts[i].atype == "checking" {
 			fmt.Print(w.accounts[i], " ")
 		}
-	)
-	for i:=0; i < len(w.accounts); i++(
-		if w.accounts[i].atype == "investment"{
+	}
+	for i := 0; i < len(w.accounts); i++ {
+		if w.accounts[i].atype == "investment" {
 			fmt.Print(w.accounts[i], " ")
 		}
-	)
-	for i:=0; i < len(w.accounts); i++(
-		if w.accounts[i].atype == "saving"{
+	}
+	for i := 0; i < len(w.accounts); i++ {
+		if w.accounts[i].atype == "saving" {
 			fmt.Print(w.accounts[i], " ")
 		}
-	)
+	}
 	fmt.Println("")
 }
-func (w wallet) balance()         {
+func (w wallet) balance() {
 	balance := 0.0
-	for i:=0; i < len(w.accounts); i++{
+	for i := 0; i < len(w.accounts); i++ {
 		fmt.Println(w.accounts[i])
 	}
-	for i:=0; i < len(w.accounts); i++{
+	for i := 0; i < len(w.accounts); i++ {
 		balance += w.accounts[i].balance
-	} 
+	}
 	fmt.Println("Overal Balance: ", balance)
 }
-func (w wallet) wire()            {}
+func (w wallet) wire() {}
 
 func Mod6BankApp() {
 
