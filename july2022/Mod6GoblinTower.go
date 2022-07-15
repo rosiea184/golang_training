@@ -10,7 +10,7 @@ type hero struct {
 	hp      int
 	attack  int
 	defense int
-	inv     []int
+	inv     [5]int
 	gold    int
 	level   int
 }
@@ -37,7 +37,9 @@ func createHero() hero {
 	h.hp = rand.Intn(10) + 20
 	h.attack = rand.Intn(2) + 1
 	h.defense = rand.Intn(4) + 1
-	//h.inv = [5]{2, 2, 2, 2, 2}
+	for i := 0; i < len(h.inv); i++ {
+		h.inv[i] = 2
+	}
 	h.gold = 0
 	h.level = 1
 	return h
@@ -63,8 +65,19 @@ func Mod6GoblinTower() {
 		steps = 0
 		fmt.Print("Do you wish to visit the potion shop? yes or no: ")
 		if potionCheck == "yes" {
-
+			potionBuy := ""
+			fmt.Println("The max amount of potions you can have is 10.")
+			count := 0
+			for i := 0; i < len(h.inv); i++ {
+				count += h.inv[i]
+			}
+			fmt.Println("You have", count, " number of potions.")
+			fmt.Println("Potions are 4 gold each")
+			fmt.Println("Your gold is: ", h.gold)
+			fmt.Print("How many potions would you like to buy? ")
+			fmt.Scan(&potionBuy)
 		}
 	}
+	fmt.Println(h)
 
 }

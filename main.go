@@ -12,6 +12,7 @@ func main() {
 	//july2022.Mod6BlackJack()
 	//july2022.Mod6BankApp()
 	//july2022.Day10() //Concurrency
-	july2022.Day11()
+	//july2022.Day11()
 	//july2022.Mod6GoblinTower()
+	july2022.Day12()
 }
