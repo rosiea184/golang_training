@@ -58,9 +58,9 @@ func (h hero) potionShop() hero {
 func Mod6GoblinTower() {
 	rand.Seed(time.Now().UnixNano())
 	h := createHero()
-	potionCheck := ""
 	steps := 0
 	if steps == 10 {
+		potionCheck := ""
 		h.level++
 		steps = 0
 		fmt.Print("Do you wish to visit the potion shop? yes or no: ")
