@@ -44,6 +44,40 @@ func handleConn(c net.Conn) {
 	}
 }
 
+//hint for wall clocks
+/*Ipackage main
+
+import (
+	"io"
+	"log"
+	"net"
+	"os"
+)
+
+// ./wallofclocks NewYork=localhost:8010 Tokyo=localhost:8020 London=localhost:8030
+func main() {
+	// os.Args holds the command-line arguments, starting with the program name.
+	for _, place := range os.Args[1:] {
+		// place is gonna look like NewYork=localhost:8010
+		// get the localhost:port part
+		// make a connection to that localhost:port
+	}
+}
+
+func timeAt(address string) {
+	conn, err := net.Dial("tcp", "localhost:8000")
+	if err != nil {
+		log.Fatal(err)
+	}
+	shouldCopy(os.Stdout, conn)
+}
+
+func shouldCopy(dst io.Writer, src io.Reader) {
+	if _, err := io.Copy(dst, src); err != nil {
+		log.Fatal(err)
+	}
+}
+*/
 //net notes
 /*
 func Day13() {
