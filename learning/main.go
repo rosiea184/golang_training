@@ -16,6 +16,10 @@ func main() {
 	//july2022.Day10() //Concurrency
 	//july2022.Day11()
 	//july2022.Mod6GoblinTower()
-	july2022.Day12()
+	//july2022.Day12()
 	//july2022.Day13()
+	//july2022.Day15()
+	//july2022.Day16()
+	//july2022.DateTimeAct()
+	july2022.RegularExpAct()
 }
