@@ -100,17 +100,36 @@ func Day16() {
 	fmt.Println(number.MatchString("1(843)666-6825"))
 	ipAdd := regexp.MustCompile(`[192]\.1([67]{1})+(\d{1})\.\d{1}`)
 	fmt.Println(ipAdd.MatchString("192.175.1"))
-	//Three Letter Word
+	//Find any three-letter words that start with the same letter and end with the same letter, but which might have a different letter in between, such as cat or cot.
 
-	//threeWord := regexp.MustCompile(`[a-z][a-z][a-z]`)
+	//threeWord := regexp.MustCompile(`([a-z][a-z][a-z]){3}`)
 
-	//given
-	var ip string
-	str := "This is a string contain IP  and yo need to parse  255.254.1.2    and 192.168.1.1"
+	//example
+	/*
+			func mymatch(name string){
+		    x:=[]byte(name)
 
-	ip = findip(str)
-	ip2 := findip2(str)
-	fmt.Println(ip, " ", ip2)
+		    regEx1,_:=regexp.Compile("^"+string(x[0])+".*"+string(x[0])+"$")
+
+		    match1:=regEx1.Match([]byte(name))
+		    fmt.Println(match1)
+		}
+
+		func main(){
+		       mymatch("abbba")
+		       mymatch("cbc")
+		       mymatch("cdddc")
+		       mymatch("adc")    }
+
+	*/
+
+	// //given
+	// var ip string
+	// str := "This is a string contain IP  and yo need to parse  255.254.1.2    and 192.168.1.1"
+
+	// ip = findip(str)
+	// ip2 := findip2(str)
+	// fmt.Println(ip, " ", ip2)
 
 }
 
@@ -195,8 +214,31 @@ func DateTimeAct() {
 	//Write a program that prompts the user for two different dates, computes the number of days between those dates, and displays the results.
 	//The order in which the user enters the dates should not affect the results.
 	fmt.Println("Activity 8")
-	//date1 := ""
-	//date2 := ""
+	uDate1Y, uDate1M, uDate1D, uDate2Y, uDate2M, uDate2D := "", "", "", "", "", ""
+	fmt.Print("Enter first date by Year Month Day in number format: ")
+	fmt.Scan(&uDate1Y, &uDate1M, &uDate1D)
+	fmt.Print("Enter second date by Year Month Day in number format: ")
+	fmt.Scan(&uDate2Y, &uDate2M, &uDate2D)
+	u1y, _ := strconv.Atoi(string(uDate1Y))
+	u1m, _ := strconv.Atoi(string(uDate1M))
+	u1d, _ := strconv.Atoi(string(uDate1D))
+	u2y, _ := strconv.Atoi(string(uDate2Y))
+	u2m, _ := strconv.Atoi(string(uDate2M))
+	u2d, _ := strconv.Atoi(string(uDate2D))
+	date1 := time.Date(u1y, time.Month(u1m), u1d, 00, 00, 0, 0, time.Local)
+	date2 := time.Date(u2y, time.Month(u2m), u2d, 00, 00, 0, 0, time.Local)
+	redate := regexp.MustCompile(`\d{4}-\d{2}-\d{2}`)
+	match1 := redate.FindString(date1.String())
+	match2 := redate.FindString(date2.String())
+	if date1.Before(date2) == true {
+		diff := date2.Sub(date1)
+		days := diff.Hours() / 24
+		fmt.Println("The number of days between ", match1, " and ", match2, " is: ", days)
+	} else if date1.After(date2) == true {
+		diff := date1.Sub(date2)
+		days := diff.Hours() / 24
+		fmt.Println("The number of days between ", match2, " and ", match1, " is: ", days)
+	}
 }
 func RegularExpAct() {
 	fmt.Println("Activity 1")
@@ -224,10 +266,16 @@ func RegularExpAct() {
 	act6 := regexp.MustCompile(`[a-z]+_[a-z]`)
 	fmt.Println(act6.FindString("input_a"))
 	//Write a Python program to find the sequences of one upper case letter followed by lower case letters
+	act7 := regexp.MustCompile(`[A-Z]+[a-z]`)
+	fmt.Println(act7.FindString("Input_a"))
 	// Write a Python program that matches a string that has an 'a' followed by anything, ending in 'b'.
+	//act8 := regexp.MustCompile(`[A-Z]+[a-z]`)
 	//Write a Python program that matches a word at the beginning of a string
+	//act9 := regexp.MustCompile(`[A-Z]+[a-z]`)
 	//Write a Python program that matches a word at the end of string, with optional punctuation
+	//act10 := regexp.MustCompile(`[A-Z]+[a-z]`)
 	//Write a Python program that matches a word containing 'z'.
+	//act11 := regexp.MustCompile(`[A-Z]+[a-z]`)
 	//Write a Python program that matches a word containing 'z', not at the start or end of the word.
 	//Write a Python program to match a string that contains only upper and lowercase letters, numbers, and underscores
 	//Write a Python program where a string will start with a specific number
