@@ -203,6 +203,62 @@ func IoAssign() {
 
 	// close the file
 	f.Close()
+	reading, err := ioutil.ReadFile("/Users/rosie/Documents/Job/Wiley_GoLang/learning/july2022/movieReview.txt")
+	if err != nil {
+		fmt.Println(err)
+	}
+	pFile, err := os.Open("/Users/rosie/Documents/Job/Wiley_GoLang/learning/july2022/positive-words.txt")
+	if err != nil {
+		panic("File not found")
+	}
+	scanner := bufio.NewScanner(pFile)
+	scanner.Split(bufio.ScanLines)
+	var lines []string
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	pFile.Close()
+	positive := 0
+	negative := 0
+	//removes puncuation
+	replacer := strings.NewReplacer(",", "", ".", "", ";", "")
+	reading = []byte(replacer.Replace(string(reading)))
+	words := strings.Fields(strings.ToLower(string(reading)))
+	for _, word := range words {
+		for _, line := range lines {
+			if line == word {
+				positive++
+			}
+		}
+	}
+	fmt.Println(positive)
+	nFile, err := os.Open("/Users/rosie/Documents/Job/Wiley_GoLang/learning/july2022/negative-words.txt")
+	if err != nil {
+		panic("File not found")
+	}
+	scanner = bufio.NewScanner(nFile)
+	scanner.Split(bufio.ScanLines)
+	lines = nil
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	nFile.Close()
+	for _, word := range words {
+		for _, line := range lines {
+			if line == word {
+				negative++
+			}
+		}
+	}
+	goodReview := float32(positive) / float32(len(words))
+	badReview := float32(negative) / float32(len(words))
+	if goodReview > badReview {
+		goodReview *= 100
+		fmt.Println("This is a positive review. ", goodReview, "% of the review had positive words")
+	} else if badReview > goodReview {
+		badReview *= 100
+		fmt.Println("This is a negative review. ", badReview, "% of the review had positive words")
+	}
 	/*
 		2)Read the text file and depending upon the words available in the Document give a conclusion about review (Possitive/negetive)
 		in terms of % of possitive/negetive
