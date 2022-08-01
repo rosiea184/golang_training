@@ -1,155 +1,11 @@
-package july2022
+package assessments
 
 import (
 	"fmt"
 	"regexp"
-
-	//"sort"
 	"strconv"
 	"time"
 )
-
-// create an alias type
-type mytype []string
-
-// implement the Len method
-func (s mytype) Len() int {
-	return len(s)
-}
-
-// implement the Swap method
-func (s mytype) Swap(i, j int) {
-	s[i], s[j] = s[j], s[i]
-}
-
-// implement the Less method
-func (s mytype) Less(i, j int) bool {
-	return len(s[i]) < len(s[j])
-}
-
-func Day16() {
-	/* Practice Stuff
-	// define a slice
-	numbers := []int{67, 18, 62, 60, 25, 64, 75, 5, 17, 55}
-	fmt.Println("Original Numbers:", numbers)
-
-	// use the sort.Ints function to sort the values in the slice
-	sort.Ints(numbers)
-
-	fmt.Println("Sorted Numbers:", numbers)
-	// define a slice
-	words := []string{"camel", "zebra", "horse", "dog", "elephant", "giraffe"}
-	fmt.Println("Original slice:", words)
-	fmt.Println("The original values are sorted:", sort.StringsAreSorted(words))
-
-	// sort the values in the slice
-	sort.Strings(words)
-	fmt.Println("Sorted slice:", words)
-	fmt.Println("The values are sorted:", sort.StringsAreSorted(words))
-	// create a slice of strings
-	fruits := []string{"pear", "passionfruit", "mango", "banana", "fig"}
-	fmt.Println("Original slice:", fruits)
-
-	// create a mytype variable
-	myfruits := mytype(fruits)
-
-	sort.Sort(myfruits)
-	fmt.Println("Sorted by length:", myfruits)
-	//--------------------
-	// display current time
-	now := time.Now()
-	fmt.Println("Today's date and time:", now)
-	fmt.Println("Current year:", now.Year())
-	fmt.Println("Current month:", now.Month())
-	fmt.Println("Current day:", now.Day())
-	fmt.Println("Current hour:", now.Hour())
-	fmt.Println("Current minute:", now.Minute())
-	fmt.Println("Current second:", now.Second())
-	fmt.Println("Current nanosecond:", now.Nanosecond())
-	fmt.Println("Current location:", now.Location())
-	fmt.Println("Current weekday:", now.Weekday())
-	fmt.Println(now.Format(time.RFC1123Z))
-	t1, e := time.Parse(
-		time.RFC3339,
-		"2025-05-21T12:50:41+00:00")
-
-	fmt.Println(t1)
-	fmt.Println(t1.Day())
-	fmt.Println(t1.Month())
-
-	// error if there is an error during parsing;
-	// nil if there is no error
-	fmt.Println(e)
-	//-------------------------------
-	// check if string starts with C and ends with n
-	m1, err1 := regexp.MatchString("C([a-z]+)n", "Catelyn")
-	fmt.Println(m1)
-	fmt.Println(err1)
-
-	// check if string contains at least one digit
-	m2, err2 := regexp.MatchString("[0-9]", "jonathan6smith")
-	fmt.Println(m2)
-	fmt.Println(err2)
-	*/
-	//email
-	// m2 := regexp.MustCompile("[0-9]")
-	// fmt.Println(m2.MatchString("jonathan6smith"))
-	email := regexp.MustCompile(`^([\w-\.]+)@([\w-]+\.)+[\w-]{2,4}$`)
-	fmt.Println(email.MatchString("joe.j@aol.co.uk"))
-	number := regexp.MustCompile(`^[0-9]+[\(\-]([0-9]{3})+[\)\-]([0-9]{3})+\-([0-9]{4})$`)
-	fmt.Println(number.MatchString("1(843)666-6825"))
-	ipAdd := regexp.MustCompile(`[192]\.1([67]{1})+(\d{1})\.\d{1}`)
-	fmt.Println(ipAdd.MatchString("192.175.1"))
-	//Find any three-letter words that start with the same letter and end with the same letter, but which might have a different letter in between, such as cat or cot.
-	//maybe I have to find all three letter words first, then compare if the first letter and last letter of the word is the same?
-	//threeWord := regexp.MustCompile(`([a-z][a-z][a-z]){3}`)
-
-	//example
-	/*
-			func mymatch(name string){
-		    x:=[]byte(name)
-
-		    regEx1,_:=regexp.Compile("^"+string(x[0])+".*"+string(x[0])+"$")
-
-		    match1:=regEx1.Match([]byte(name))
-		    fmt.Println(match1)
-		}
-
-		func main(){
-		       mymatch("abbba")
-		       mymatch("cbc")
-		       mymatch("cdddc")
-		       mymatch("adc")    }
-
-	*/
-
-	// //given
-	// var ip string
-	// str := "This is a string contain IP  and yo need to parse  255.254.1.2    and 192.168.1.1"
-
-	// ip = findip(str)
-	// ip2 := findip2(str)
-	// fmt.Println(ip, " ", ip2)
-
-}
-
-//255.254.0.1
-func findip(input string) string {
-	pt := "(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])" //"(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]])"
-	regExParretn := pt + "\\." + pt + "\\." + pt + "\\." + pt
-	regEx := regexp.MustCompile(regExParretn)
-	fmt.Println(regEx.String())
-	return regEx.FindString(input)
-}
-
-//192.168.1.1
-func findip2(input string) string {
-	pt := "(192|1[6-7][0-9]|1[0-9][0-9]|[1-9]?[0-9])"
-	regExParretn := pt + "\\." + pt + "\\." + pt + "\\." + pt
-	regEx := regexp.MustCompile(regExParretn)
-	fmt.Println(regEx.String())
-	return regEx.FindString(input)
-}
 
 func leapYear(y string) bool {
 	leapYear := false
@@ -161,7 +17,7 @@ func leapYear(y string) bool {
 	}
 	return leapYear
 }
-func DateTimeAct() {
+func DateTimeActivity() {
 	//Activity 1
 	fmt.Println("Activity 1")
 	now := time.Now()
@@ -240,7 +96,7 @@ func DateTimeAct() {
 		fmt.Println("The number of days between ", match2, " and ", match1, " is: ", days)
 	}
 }
-func RegularExpAct() {
+func RegularExpActivity() {
 	fmt.Println("Activity 1")
 	//Write a program to check that a string contains only letters and numbers (e.g., a-z, A-Z, 0-9).
 	act1 := regexp.MustCompile(`[a-zA-Z0-9]*`)
@@ -261,7 +117,7 @@ func RegularExpAct() {
 	//Write a program that finds all strings that include the letter i followed by three instances of the letter n.
 	act5 := regexp.MustCompile(`in{3}`)
 	fmt.Println(act5.FindString("innnput"))
-	fmt.Println("Python Regular Expression")
+	fmt.Println("Python Regular Expression Practice")
 	//Write a Python program to find sequences of lowercase letters joined with a underscore.
 	act6 := regexp.MustCompile(`[a-z]+_[a-z]`)
 	fmt.Println(act6.FindString("input_a"))
@@ -404,76 +260,3 @@ func RegularExpAct() {
 	// Java
 	// Python
 }
-
-/*
-
-A Quick Go Regex Cheat Sheet
-Below is a list of commonly used regular expressions and Regex and their meaning. The list below is not comprehensive:
-
-ab: a followed by b
-a|b: a or b
-a*: Zero or more a’s
-a?: Zero or one a’s
-a{2}: Two or more a’s
-[ab], ^[ab]: Either a or b, except a or b (^ symbolises not, ie not a or b)
-[a-z]: Any character a to z
-[0-9]: Any number 0 to 9.
-\d: Any digit. Similarly, a non-digit is \D or [^0-9]
-\s: A whitespace character or [\t\n\f\r]. Similarly, \S is non-whitespace character or [^\t\n\f\r]
-\w: A word character: [0-9A-Za-z_]. Similarly, \W means a non-word: [^0-9A-Za-z_]
-[\t\n\f\r\v]: Means a tab=\011, newline=\012, form feed=\014, carriage return=\015, vertical tab=\013 respectively.
-\123: Octal character upto exactly three digits
-\x9E: Exactly two digit hex character
-\A or ^: Beginning of the text
-$ or \z: End of the text
-i: Case insensitive
-
-Note: To match special characters, it must be escaped with a backslash character. For example, to match a $, prefix it with a backslash – \$.
-
-
-
-
-
-import (
-	"fmt"
-	"regexp"
-)
-
-func main() {
-/*
-str := "Golang expressions example"
-
-regexp,_ := regexp.Compile("Gola([a-z]+)g")
-
-fmt.Println(regexp.FindString(str))
-
-
-
-str := "Golang expressions example"
-
-    regexp,_ := regexp.Compile("Gola([a-z]+)g")
-
-    fmt.Println(regexp.FindString(str))
-
-
-
-/*
-
-	match, err := regexp.MatchString(`[^0-9]`, "1234567")
-	if err != nil {
-		fmt.Println("Error ", err)
-	}
-	fmt.Println(match)
-
-      text := "This is *$ // sample ## %% text"
-
-	reg := regexp.MustCompile(`[^a-zA-Z0-9]`)
-	fmt.Println("true|false", reg.MatchString(text))
-
-	strs := reg.FindAllString(text, -1)
-
-	for _, e := range strs {
-		fmt.Println(e)
-	}
-
-*/

@@ -231,7 +231,6 @@ func IoAssign() {
 			}
 		}
 	}
-	fmt.Println(positive)
 	nFile, err := os.Open("/Users/rosie/Documents/Job/Wiley_GoLang/learning/july2022/negative-words.txt")
 	if err != nil {
 		panic("File not found")

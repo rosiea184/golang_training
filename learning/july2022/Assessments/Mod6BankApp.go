@@ -1,4 +1,4 @@
-package july2022
+package assessments
 
 import "fmt"
 
