@@ -82,14 +82,14 @@ func MapsKeywordSearch() {
 		    Prompt the user to start over again or exit the program.
 	*/
 	//category := make(map[string]string)
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
-	//category[""]=""
+	//category["fruit"]="apple"
+	//category["fruit"]="pear"
+	//category["fruit"]="banana"
+	//category["fruit"]="kiwi"
+	//category["fruit"]="raspberry"
+	//category["fruit"]="starfruit"
+	//category["fruit"]="strawberry"
+	//category["fruit"]="watermelon"
+	//category["fruit"]="avocado"
+	//category["fruit"]=""
 }
