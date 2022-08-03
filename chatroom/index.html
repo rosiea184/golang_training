@@ -15,7 +15,6 @@
 	var output = document.getElementById("output");
 	var socket = new WebSocket("ws://" + window.location.host + "/echo");
 	var username = "New User";
-	//var uOutput = document.getElementById("nameoutput");
 
 	socket.onopen = function () {
 		output.innerHTML += "Status: Connected\n";
@@ -26,6 +25,10 @@
 	};
 	function usernameStore(){
 		username = document.getElementById("name").value;
+		//attempt to store value in go
+		// socket.usernameStore(JSON.stringify({
+		// 	name: username.value
+		// }));
 		document.getElementById("name").value = "";
 	}
 	function send() {

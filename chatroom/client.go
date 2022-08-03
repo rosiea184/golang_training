@@ -44,7 +44,7 @@ type Client struct {
 	send chan []byte
 
 	//username
-	name chan []byte
+	name byte
 }
 
 // readPump pumps messages from the websocket connection to the hub.
