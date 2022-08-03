@@ -1,6 +1,12 @@
 <html>
 <title>WebSocket Server</title>
 
+<p>Please enter username</p>
+<input id="name" type="text" />
+<button onclick="usernameStore()">Send</button>
+
+
+<p>Please enter message</p>
 <input id="input" type="text" />
 <button onclick="send()">Send</button>
 <pre id="output"></pre>
@@ -9,15 +15,20 @@
 	var input = document.getElementById("input");
 	var output = document.getElementById("output");
 	var socket = new WebSocket("ws://" + window.location.host + "/echo");
+	var username = document.getElementById("name");
+	//var uOutput = document.getElementById("nameoutput");
 
 	socket.onopen = function () {
 		output.innerHTML += "Status: Connected\n";
 	};
 
 	socket.onmessage = function (e) {
-		output.innerHTML += "Message from Server: " + e.data + "\n";
+		output.innerHTML += username + ": " + e.data + "\n";
 	};
-
+	function usernameStore(){
+		username = document.getElementById("name").value;
+		username.value = "";
+	}
 	function send() {
     socket.send(JSON.stringify({
         message: input.value
