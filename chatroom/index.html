@@ -5,7 +5,6 @@
 <input id="name" type="text" />
 <button onclick="usernameStore()">Send</button>
 
-
 <p>Please enter message</p>
 <input id="input" type="text" />
 <button onclick="send()">Send</button>
@@ -15,7 +14,7 @@
 	var input = document.getElementById("input");
 	var output = document.getElementById("output");
 	var socket = new WebSocket("ws://" + window.location.host + "/echo");
-	var username = document.getElementById("name");
+	var username = "New User";
 	//var uOutput = document.getElementById("nameoutput");
 
 	socket.onopen = function () {
@@ -27,7 +26,7 @@
 	};
 	function usernameStore(){
 		username = document.getElementById("name").value;
-		username.value = "";
+		document.getElementById("name").value = "";
 	}
 	function send() {
     socket.send(JSON.stringify({

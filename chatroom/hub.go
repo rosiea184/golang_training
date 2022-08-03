@@ -26,7 +26,6 @@ func newHub() *Hub {
 }
 
 func (h *Hub) run() {
-	//ask for username
 	for {
 		select {
 		case client := <-h.register:
