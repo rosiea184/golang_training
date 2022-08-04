@@ -1,8 +1,6 @@
 package main
 
-import (
-	"mymodule/july2022"
-)
+import "fmt"
 
 func main() {
 	//july2022.ElectricBill()
@@ -23,5 +21,15 @@ func main() {
 	//july2022.DateTimeAct()
 	//july2022.RegularExpAct()
 	//july2022.Day17()
-	july2022.IoAssign()
+	//july2022.IoAssign()
+	//for the test example
+	fmt.Println(getArr())
+}
+
+func getArr() [10]int {
+	var arr [10]int
+	for i := 0; i < 10; i++ {
+		arr[i] = 1
+	}
+	return arr
 }
